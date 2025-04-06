@@ -17,9 +17,11 @@ class TelaInicial:
             text="Play",
             font=("Arial", 20),
             width=10,
-            height=2
+            height=2,
+            command=self.irParaInstrucoes
         )
         btPlay.pack(pady=20)
+       
 
         rodape = tk.Label(
             self.root,
@@ -28,4 +30,6 @@ class TelaInicial:
         )
         rodape.pack(side="bottom", pady=10)
 
-        self.root.mainloop()
+    def irParaInstrucoes(self):
+            TelaInstrucoes(self.root).frameTelaInstrucoes()
+  
