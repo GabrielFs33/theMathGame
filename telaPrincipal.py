@@ -21,7 +21,7 @@ def frameGenerico():
     root.protocol("WM_DELETE_WINDOW", funcaoFechar)
 
     return root
-
+#teste
 
 '''
 window = buildMain()
