@@ -21,7 +21,7 @@ class TelaJogo:
         tk.Label(cabecalho, text="Tempo:").grid(row=0,column=4,padx=10)
         tk.Label(cabecalho, text="0").grid(row=0,column=5,padx=10)
 
-        botaoParar = tk.Button(cabecalho, text="Parar", font=("Arial",10), command=lambda: self.pararJogo(root))
+        botaoParar = tk.Button(cabecalho, text="Parar", font=("Arial",10), command=lambda: self.pararJogo(self))
         botaoParar.grid(row=0,column=6,padx=10)
 
         numerosFrame= tk.Frame(self.root)
@@ -40,3 +40,6 @@ class TelaJogo:
 
         for operacao in ["+","-","/","*"]:
             tk.Button(operacoesFrame, text=operacao, font=("Arial",16), width=5, height=2).pack(side="left",padx=10)
+
+    def pararJogo(self,root):
+        self.root.destroy()

@@ -28,7 +28,7 @@ class TelaInicial:
 
         rodape = tk.Label(
             self.root,
-            text="Desenvolvido por GabrielFirmiano e Hugo Miguel (Senai Betim 2025)",
+            text="Desenvolvido por Gabriel Firmiano e Hugo Miguel (Senai Betim 2025)",
             font=("Arial", 8)
         )
         rodape.pack(side="bottom", pady=10)

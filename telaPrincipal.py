@@ -3,6 +3,7 @@ from tkinter import messagebox
 from telaAbertura import TelaInicial
 from telaInstrucoes import TelaInstrucoes
 
+
 def frameGenerico():
     root = tk.Tk()
     root.geometry("800x600")
