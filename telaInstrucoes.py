@@ -1,6 +1,7 @@
 import tkinter as tk
 from utilitario import resetTela
 from telaJogo import TelaJogo
+from logicaJogo import DadosOperacionais
 
 class TelaInstrucoes:
     def __init__(self,root):
@@ -43,5 +44,6 @@ class TelaInstrucoes:
         rodape.pack(side="bottom", pady=10)
 
     def irPraJogo(self):
-        TelaJogo(self.root).gameFrame(self,0,0)
+        telaJogo = TelaJogo(self.root)
+        DadosOperacionais.iniciaJogo(telaJogo,self.root)
 

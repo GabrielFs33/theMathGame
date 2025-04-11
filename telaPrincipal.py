@@ -10,13 +10,13 @@ def frameGenerico():
     root.title("The Math Game")
     root.resizable(False, False)
 
-    root.continue_game = tk.BooleanVar(value=False)
+    root.continuaJogo = tk.BooleanVar(value=False)
     root.running = True
 
     def funcaoFechar():
         if messagebox.askyesno("Confirmação", "Você realmente deseja sair do jogo?"):
             root.running = False
-            root.continue_game.set(True)
+            root.continuaJogo.set(True)
             root.destroy()
 
     root.protocol("WM_DELETE_WINDOW", funcaoFechar)
