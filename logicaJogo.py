@@ -21,7 +21,7 @@ class DadosOperacionais:
             cont +=1
 
             if cont > maxPartidas:
-                messagebox.showinfo("Fim do jogo",f"Parabéns! Você marcou {root.pontos} pontos no jogo.")
+                messagebox.showinfo("Fim do jogo",f"Parabéns! Você marcou {root.pontuacao} pontos no jogo.")
 
    
         
