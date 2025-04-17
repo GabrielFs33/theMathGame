@@ -12,8 +12,9 @@ class TelaInicial:
         titulo = tk.Label(self.root, text="Bem-vindo ao \nTHE MATH GAME!", font=("Arial", 14))
         titulo.pack(pady=50)
 
-
+        
         self.imgPlay = tk.PhotoImage(file="imagens/play.png")
+        
 
         
 

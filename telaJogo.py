@@ -23,7 +23,9 @@ class TelaJogo:
     def gameFrame(self, root, partidaAtual, pontuacao):
         resetTela(self.root)
         self.root.title("The Math GAME")
+
         self.iniciaTempo = time.time()
+        self.root.startTime = time.time()
 
         
         self.n1, self.n2 = DadosFuncionais.gerarNumeros()
@@ -44,8 +46,8 @@ class TelaJogo:
         botaoParar = tk.Button(cabecalho, text="Parar", font=("Arial", 10), command=self.pararJogo)
         botaoParar.grid(row=0, column=6, padx=10)
         
-        tk.Label(cabecalho, text="Tempo:").grid(row=0, column=4, padx=10)
-        self.tempoLabel = tk.Label(cabecalho,text="00:00")
+        tk.Label(cabecalho, text="").grid(row=0, column=4, padx=10)
+        self.tempoLabel = tk.Label(cabecalho,text="")
         self.tempoLabel.grid(row=0, column=5, padx=10)
         
 
@@ -113,10 +115,11 @@ class TelaJogo:
     def pararJogo(self):
         self.paused = True
         self.tempoAntersDaPausa = time.time() - self.root.startTime
-        if messagebox.askyesno("Deseja sair do jogo?"):
-            self.root.running = False
-            self.root.continuaJogo.set(True)
-            self.root.destroy()
+        if messagebox.askyesno("Em pausa", "Deseja voltar para a tela inicial?"):
+            #self.root.running = False
+            #self.root.continuaJogo.set(True)
+            from telaAbertura import TelaInicial
+            TelaInicial(self.root).frameTelaInicial()
         else:
             self.paused = False
             self.root.startTime = time.time() - self.tempoAntersDaPausa

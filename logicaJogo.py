@@ -5,6 +5,7 @@ from tkinter import messagebox
 from utilitario import resetTela
 from fimJogo import FinalJogo
 
+
 class DadosOperacionais:
     @staticmethod
     def iniciaJogo(telaJogoInstancia, root):
