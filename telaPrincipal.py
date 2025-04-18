@@ -6,7 +6,7 @@ from telaInstrucoes import TelaInstrucoes
 
 def frameGenerico():
     root = tk.Tk()
-    root.geometry("800x600")
+    root.geometry("900x600")
     root.title("The Math Game")
     root.resizable(False, False)
 
@@ -22,16 +22,6 @@ def frameGenerico():
     root.protocol("WM_DELETE_WINDOW", funcaoFechar)
 
     return root
-#teste
-
-'''
-window = buildMain()
-excluir dps
-try:
-    window.mainloop()
-except Exception as e:
-    print(f"Erro durante a execução: {e}")
-'''
 
 #execução principal
 if __name__ == "__main__":

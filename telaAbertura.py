@@ -1,7 +1,6 @@
 import tkinter as tk
 from telaInstrucoes import TelaInstrucoes
-from utilitario import resetTela
-
+from utilitario import resetTela,rodape
 class TelaInicial:
     def __init__(self, root):
         self.root = root
@@ -9,15 +8,15 @@ class TelaInicial:
         self.root.title("THE MATH GAME")
 
     def frameTelaInicial(self):
-        titulo = tk.Label(self.root, text="Bem-vindo ao \nTHE MATH GAME!", font=("Arial", 14))
-        titulo.pack(pady=50)
-
-        
-        self.imgPlay = tk.PhotoImage(file="imagens/play.png")
         
 
-        
+        self.bgImg = tk.PhotoImage(file="imagens/fundoTelaAbertura.png")
+        self.bgLabel = tk.Label(self.root, image=self.bgImg)
+        self.bgLabel.place(x=0,y=0,relwidth=1,relheight=1)
 
+        self.imgPlay = tk.PhotoImage(file="imagens/alienzin.png")
+        self.imgPlay = self.imgPlay.subsample(4, 4)
+        
         btPlay = tk.Button(
             self.root,
             image=self.imgPlay,
@@ -25,16 +24,20 @@ class TelaInicial:
             highlightthickness=0,
             command=self.irParaInstrucoes
         )
-        btPlay.pack(pady=20)
-
-
-        rodape = tk.Label(
+        btPlay.place(relx=0.5,rely=0.7,anchor="center")
+        
+        labelInstrucao = tk.Label(
             self.root,
-            text="Desenvolvido por Gabriel Firmiano e Hugo Miguel (Senai Betim 2025)",
-            font=("Arial", 8)
+            text="Clique no alien para começar",
+            font=("Arial", 14, "bold"),
+            bg="#000000",   
+            fg="#39ff14"    
         )
-        rodape.pack(side="bottom", pady=10)
+        labelInstrucao.place(relx=0.5, rely=0.5, anchor="s")
 
+
+        rodape(self.root)
+        
     def irParaInstrucoes(self):
             TelaInstrucoes(self.root).frameTelaInstrucoes()
 

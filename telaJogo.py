@@ -1,7 +1,7 @@
 import tkinter as tk 
 import time
 from tkinter import messagebox
-from utilitario import resetTela
+from utilitario import resetTela,rodape
 from logicaJogo import DadosOperacionais,DadosFuncionais
 
 class TelaJogo:
@@ -27,6 +27,10 @@ class TelaJogo:
         self.iniciaTempo = time.time()
         self.root.startTime = time.time()
 
+        self.bg_image = tk.PhotoImage(file="imagens/alienBgGame.png")  
+        self.background_label = tk.Label(self.root, image=self.bg_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
         
         self.n1, self.n2 = DadosFuncionais.gerarNumeros()
         self.operadorCorreto = DadosFuncionais.selecionaOperador()
@@ -34,33 +38,33 @@ class TelaJogo:
         self.pontuacao = pontuacao
 
 
-        cabecalho = tk.Frame(root)
+        cabecalho = tk.Frame(root,bg="#000000")
         cabecalho.pack(pady=10)
 
-        tk.Label(cabecalho, text="Partida:").grid(row=0, column=0, padx=10)
-        tk.Label(cabecalho, text=f"{partidaAtual}/20").grid(row=0, column=1, padx=10)
+        tk.Label(cabecalho, text="Partida:", fg="#39ff14", bg="#000000").grid(row=0, column=0, padx=10)
+        tk.Label(cabecalho, text=f"{partidaAtual}/20",fg="#39ff14", bg="#000000",).grid(row=0, column=1, padx=10)
 
-        tk.Label(cabecalho, text="Pontuação:").grid(row=0, column=2, padx=10)
-        tk.Label(cabecalho, text=str(pontuacao)).grid(row=0, column=3, padx=10)
+        tk.Label(cabecalho, text="Pontuação:", fg="#39ff14", bg="#000000").grid(row=0, column=2, padx=10)
+        tk.Label(cabecalho, text=str(pontuacao),fg="#39ff14", bg="#000000").grid(row=0, column=3, padx=10)
         
-        botaoParar = tk.Button(cabecalho, text="Parar", font=("Arial", 10), command=self.pararJogo)
+        botaoParar = tk.Button(cabecalho, text="Pausar", fg="#39ff14", bg="#000000", font=("Arial", 10), command=self.pararJogo)
         botaoParar.grid(row=0, column=6, padx=10)
         
-        tk.Label(cabecalho, text="").grid(row=0, column=4, padx=10)
-        self.tempoLabel = tk.Label(cabecalho,text="")
+        tk.Label(cabecalho, text="",fg="#39ff14", bg="#000000").grid(row=0, column=4, padx=10)
+        self.tempoLabel = tk.Label(cabecalho,text="",fg="#39ff14", bg="#000000")
         self.tempoLabel.grid(row=0, column=5, padx=10)
         
 
-        numerosFrame = tk.Frame(root)
+        numerosFrame = tk.Frame(root,bg="#000000")
         numerosFrame.pack(pady=40)
 
-        tk.Label(numerosFrame, text=str(self.n1), font=("Arial", 32)).pack(side="left", padx=20)
-        tk.Label(numerosFrame, text="?", font=("Arial", 32)).pack(side="left", padx=20)
-        tk.Label(numerosFrame, text=str(self.n2), font=("Arial", 32)).pack(side="left", padx=20)
-        tk.Label(numerosFrame, text="=", font=("Arial", 32)).pack(side="left", padx=10)
-        tk.Label(numerosFrame, text=str(self.resultado), font=("Arial", 32)).pack(side="left", padx=10)
+        tk.Label(numerosFrame, text=str(self.n1),fg="#39ff14", bg="#000000",font=("Arial", 32)).pack(side="left", padx=20)
+        tk.Label(numerosFrame, text="👽",fg="#39ff14", bg="#000000", font=("Arial", 32)).pack(side="left", padx=20)
+        tk.Label(numerosFrame, text=str(self.n2),fg="#39ff14", bg="#000000", font=("Arial", 32)).pack(side="left", padx=20)
+        tk.Label(numerosFrame, text="=",fg="#39ff14", bg="#000000", font=("Arial", 32)).pack(side="left", padx=10)
+        tk.Label(numerosFrame, text=str(self.resultado), fg="#39ff14", bg="#000000",font=("Arial", 32)).pack(side="left", padx=10)
 
-        operacoesFrame = tk.Frame(root)
+        operacoesFrame = tk.Frame(root,bg="#000000")
         operacoesFrame.pack(pady=30)
 
         operadoresMapeados = {"+":"+", "-":"-","x":"*","÷":"/"}
@@ -69,21 +73,18 @@ class TelaJogo:
             botao = tk.Button(
                 operacoesFrame,
                 text=textoBotao,
+                fg="#39ff14", 
+                bg="#000000",
                 font=("Arial", 16),
                 width=5,
-                height=2,
+                height=3,
                 command=lambda op=operadorReal: self.verificarResposta(op)
             ).pack(side="left", padx=10)
 
         self.paused = False
         self.atualizarTempo()
 
-        rodape = tk.Label(
-            root,
-            text="Desenvolvido por: \nGabriel Firmiano e Hugo Miguel (Senai Betim 2025)",
-            font=("Arial",8)
-        )
-        rodape.pack(side="bottom",padx=10)
+        rodape(self.root)
 
     def verificarResposta(self, resposta):
 
@@ -116,8 +117,6 @@ class TelaJogo:
         self.paused = True
         self.tempoAntersDaPausa = time.time() - self.root.startTime
         if messagebox.askyesno("Em pausa", "Deseja voltar para a tela inicial?"):
-            #self.root.running = False
-            #self.root.continuaJogo.set(True)
             from telaAbertura import TelaInicial
             TelaInicial(self.root).frameTelaInicial()
         else:

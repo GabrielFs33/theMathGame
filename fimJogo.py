@@ -1,5 +1,5 @@
 import tkinter as tk 
-from utilitario import resetTela
+from utilitario import resetTela,rodape
 
 class FinalJogo:
     def __init__ (self, root, pontuacao=0, acertos=0, partidas = 0):
@@ -13,14 +13,20 @@ class FinalJogo:
         self.root.running = False
         self.root.title("Fim do The Math Game")
 
-        titulo = tk.Label(self.root, text="FIM JOGO!", font=("Arial",24))
+        self.bgImg = tk.PhotoImage(file="imagens/fim.png")
+        self.bgLabel = tk.Label(self.root, image=self.bgImg)
+        self.bgLabel.place(x=0,y=0,relwidth=1,relheight=1)
+
+        titulo = tk.Label(self.root, text="FIM JOGO!", font=("Arial",24),bg="#000000",fg="#39ff14")
         titulo.pack(pady=50)
 
         texto = tk.Label(
             self.root,
             text=f"Parabéns pela partida!\n"
-            f"Você marcou {self.pontuacao} pontos e acertou {self.acertos} de {self.partidas} ",
-            font=("Arial",14)
+            f"Você marcou {self.pontuacao} pontos e acertou {self.acertos} de {self.partidas}\nUm resultado IMPRESSIONANTE!",
+            font=("Arial",14),
+            bg="#000000",
+            fg="#39ff14"
         )
         texto.pack(pady=10)
 
@@ -30,7 +36,9 @@ class FinalJogo:
             command=self.abrirInstrucoes,
             font=("Arial",16),
             width=15,
-            height=2
+            height=2,
+            bg="#000000",
+            fg="#39ff14"
         )
         botaoPLay.pack(pady=20)
 
@@ -40,16 +48,13 @@ class FinalJogo:
             command=self.sairJogo,
             font=("Arial",16),
             width=15,
-            height=2
+            height=2,
+            bg="#000000",
+            fg="#39ff14"
         )
         botaoSair.pack(pady=10)
 
-        rodape = tk.Label(
-            self.root,
-            text="Desenvolvido por: Gabriel Firmiano e Hugo Miguel (Senai Betim 2025)",
-            font=("Arial",8)
-        )
-        rodape.pack(side="bottom",pady=10)
+        rodape(self.root)
 
     def abrirInstrucoes(self):
         from telaInstrucoes import TelaInstrucoes
